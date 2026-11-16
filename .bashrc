@@ -120,6 +120,16 @@ source -- ~/.local/share/blesh/ble.sh
 
 eval "$(~/.local/bin/mise activate bash)"
 
+if command -v jj &> /dev/null && [ -z "$(jj config get user.name 2>/dev/null)" ]; then
+  GIT_NAME=$(git config --global user.name)
+  GIT_EMAIL=$(git config --global user.email)
+  
+  if [ -n "$GIT_NAME" ] && [ -n "$GIT_EMAIL" ]; then
+    jj config set --user user.name "$GIT_NAME"
+    jj config set --user user.email "$GIT_EMAIL"
+  fi
+fi
+
 eval "$(zoxide init bash)"
 
 eval "$(fzf --bash)"
