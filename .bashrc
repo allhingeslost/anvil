@@ -120,13 +120,25 @@ source -- ~/.local/share/blesh/ble.sh
 
 eval "$(~/.local/bin/mise activate bash)"
 
-if command -v jj &> /dev/null && [ -z "$(jj config get user.name 2>/dev/null)" ]; then
-  GIT_NAME=$(git config --global user.name)
-  GIT_EMAIL=$(git config --global user.email)
-  
-  if [ -n "$GIT_NAME" ] && [ -n "$GIT_EMAIL" ]; then
-    jj config set --user user.name "$GIT_NAME"
-    jj config set --user user.email "$GIT_EMAIL"
+if [ "$CODESPACES" = "true" ]; then
+  if [ -n "$GITHUB_USER" ]; then
+    git config --global user.name "$GITHUB_USER"
+  fi
+
+  if command -v jj &> /dev/null; then
+    GIT_NAME=$(git config --global user.name)
+    GIT_EMAIL=$(git config --global user.email)
+
+    [ -n "$GIT_NAME" ] && jj config set --user user.name "$GIT_NAME"
+    [ -n "$GIT_EMAIL" ] && jj config set --user user.email "$GIT_EMAIL"
+  fi
+else
+  if command -v jj &> /dev/null && [ -z "$(jj config get user.name 2>/dev/null)" ]; then
+    GIT_NAME=$(git config --global user.name)
+    GIT_EMAIL=$(git config --global user.email)
+
+    [ -n "$GIT_NAME" ] && jj config set --user user.name "$GIT_NAME"
+    [ -n "$GIT_EMAIL" ] && jj config set --user user.email "$GIT_EMAIL"
   fi
 fi
 
