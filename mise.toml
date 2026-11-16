@@ -1,0 +1,21 @@
+[tools]
+node = "lts"
+rust = "latest"
+go = "latest"
+zig = "latest"
+aube = "latest"
+odin = { version = "latest", bin_path = "." }
+starship = "latest"
+gh = "latest"
+jj = "latest"
+lazydocker = "latest"
+neovim = "latest"
+opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
+ripgrep = "latest"
+eza = "latest"
+fzf = "latest"
+fd = "latest"
+zoxide = "latest"
+atuin = "latest"
+pitchfork = "latest"
+uv = "latest"
