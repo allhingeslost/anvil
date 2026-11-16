@@ -29,4 +29,7 @@ COPY --chown=vscode:vscode nvim/plugins/colorscheme.lua /home/vscode/.config/nvi
 
 RUN mise exec -- nvim --headless "+Lazy! sync" +qa
 
+RUN mkdir -p /home/vscode/.config/opencode
+COPY --chown=vscode:vscode opencode/ /home/vscode/.config/opencode/
+
 COPY --chown=vscode:vscode .bashrc /home/vscode/.bashrc
