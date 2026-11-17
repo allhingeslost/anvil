@@ -1,0 +1,13 @@
+{
+  "name": "DevBox",
+  "image": "ghcr.io/allhingeslost/devbox:latest",
+
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/tmp/host-sync/.gitconfig,type=bind,readonly",
+    "source=${localEnv:HOME}/.config/gh,target=/tmp/host-sync/gh,type=bind,readonly",
+    "source=${localEnv:HOME}/.config/opencode,target=/tmp/host-sync/opencode,type=bind,readonly",
+    "source=${localEnv:HOME}/.local/share/opencode,target=/tmp/host-sync/opencode-share,type=bind,readonly"
+  ],
+
+  "postCreateCommand": "mkdir -p ~/.config ~/.local/share && ([ -f /tmp/host-sync/.gitconfig ] && cp /tmp/host-sync/.gitconfig ~/.gitconfig || true) && ([ -d /tmp/host-sync/gh ] && cp -rf /tmp/host-sync/gh ~/.config/ || true) && ([ -d /tmp/host-sync/opencode ] && cp -rf /tmp/host-sync/opencode ~/.config/ || true) && ([ -d /tmp/host-sync/opencode-share ] && cp -rf /tmp/host-sync/opencode-share ~/.local/share/opencode || true) && echo '[DevBox] All host configs copied successfully!'"
+}
