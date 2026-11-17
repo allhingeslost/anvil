@@ -28,7 +28,9 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     && locale-gen en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
-ENV LANG=en_US.UTF-8 \
+ENV USER=vscode \
+    LOGNAME=vscode \
+    LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     SHELL=/bin/bash \
     PATH="/home/vscode/.local/bin:/home/vscode/.local/share/mise/shims:$PATH"
