@@ -1,3 +1,6 @@
+[tool_alias]
+junie = "npm:@jetbrains/junie"
+
 [tools]
 node = "lts"
 rust = "latest"
@@ -19,3 +22,4 @@ zoxide = "latest"
 atuin = "latest"
 pitchfork = "latest"
 uv = "latest"
+junie = "latest"
