@@ -1,13 +1,40 @@
-FROM mcr.microsoft.com/devcontainers/base:ubuntu
+FROM ubuntu:26.04
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git curl build-essential gawk make wget ca-certificates \
+LABEL devcontainer.metadata='[{"remoteUser":"vscode","customizations":{"vscode":{"settings":{"terminal.integrated.defaultProfile.linux":"bash"}}}}]'
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN usermod -l vscode -d /home/vscode -m ubuntu && \
+    groupmod -n vscode ubuntu && \
+    chsh -s /bin/bash vscode && \
+    chsh -s /bin/bash root && \
+    apt-get update && apt-get install -y --no-install-recommends \
+        sudo \
+        locales \
+        ca-certificates \
+        curl \
+        wget \
+        git \
+        procps \
+        unzip \
+        tar \
+        openssh-client \
+        build-essential \
+        make \
+        gawk \
+    && echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
+    && chmod 0440 /etc/sudoers.d/vscode \
+    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+    && locale-gen en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
+
+ENV LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    SHELL=/bin/bash \
+    PATH="/home/vscode/.local/bin:/home/vscode/.local/share/mise/shims:$PATH"
 
 USER vscode
 WORKDIR /home/vscode
-
-ENV PATH="/home/vscode/.local/bin:/home/vscode/.local/share/mise/shims:$PATH"
 
 RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git && \
     make -C ble.sh install PREFIX=/home/vscode/.local && \
