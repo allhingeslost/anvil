@@ -19,7 +19,7 @@ RUN mkdir -p /home/vscode/.config/mise
 COPY --chown=vscode:vscode mise/config.toml /home/vscode/.config/mise/config.toml
 
 RUN mise trust /home/vscode/.config/mise/config.toml && \
-    mise install
+    MISE_VERBOSE=1 mise install
 
 RUN git clone https://github.com/LazyVim/starter /home/vscode/.config/nvim && \
     rm -rf /home/vscode/.config/nvim/.git
