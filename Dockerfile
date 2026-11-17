@@ -42,6 +42,8 @@ RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akin
     make -C ble.sh install PREFIX=/home/vscode/.local && \
     rm -rf ble.sh
 
+RUN TERM=xterm-256color bash -c 'source /home/vscode/.local/share/blesh/ble.sh --noattach'
+
 RUN curl -fsSL https://mise.run | sh
 
 RUN mkdir -p /home/vscode/.config/mise
