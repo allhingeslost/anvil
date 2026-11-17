@@ -49,8 +49,7 @@ COPY --chown=vscode:vscode mise/config.toml /home/vscode/.config/mise/config.tom
 
 RUN mise trust /home/vscode/.config/mise/config.toml && \
     mise install && \
-    mise cache clear && \
-    rm -rf /home/vscode/.local/share/mise/downloads
+    mise cache clear
 
 RUN git clone https://github.com/LazyVim/starter /home/vscode/.config/nvim && \
     rm -rf /home/vscode/.config/nvim/.git
