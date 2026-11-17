@@ -130,8 +130,8 @@ if [ "$CODESPACES" = "true" ]; then
   fi
 else
   if command -v jj &> /dev/null && [ -z "$(jj config get user.name 2>/dev/null)" ]; then
-    jj config set --user user.name "$(git config user.name)"
-    jj config set --user user.email "$(git config user.email)"
+    jj config set --user user.name "$(git config --global user.name)"
+    jj config set --user user.email "$(git config --global user.email)"
   fi
 fi
 
