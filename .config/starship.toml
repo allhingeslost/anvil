@@ -1,0 +1,8 @@
+format = """
+$directory\
+$vcs\
+$line_break\
+$character"""
+
+[vcs]
+order = ["jj", "git"]
