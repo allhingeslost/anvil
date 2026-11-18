@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 LABEL devcontainer.metadata='[{"remoteUser":"vscode","customizations":{"vscode":{"settings":{"terminal.integrated.defaultProfile.linux":"bash"}}}}]'
 
@@ -16,11 +16,9 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         git \
         procps \
         unzip \
-        tar \
         xz-utils \
         openssh-client \
         build-essential \
-        make \
         gawk \
         less \
         file \
