@@ -22,6 +22,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         gawk \
         less \
         file \
+        tmux \
     && echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
     && chmod 0440 /etc/sudoers.d/vscode \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
