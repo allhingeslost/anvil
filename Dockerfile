@@ -1,4 +1,4 @@
-FROM ubuntu:26.04
+FROM ubuntu:24.04
 
 LABEL devcontainer.metadata='[{"remoteUser":"vscode","customizations":{"vscode":{"settings":{"terminal.integrated.defaultProfile.linux":"bash"}}}}]'
 
@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     groupmod -n vscode ubuntu && \
     chsh -s /bin/bash vscode && \
-    chsh -s /bin/bash root && \
     apt-get update && apt-get install -y --no-install-recommends \
         sudo \
         locales \
@@ -18,10 +17,13 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         procps \
         unzip \
         tar \
+        xz-utils \
         openssh-client \
         build-essential \
         make \
         gawk \
+        less \
+        file \
     && echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
     && chmod 0440 /etc/sudoers.d/vscode \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
