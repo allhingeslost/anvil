@@ -2,7 +2,7 @@ FROM ubuntu:26.04
 
 LABEL devcontainer.metadata='[{"remoteUser":"vscode","customizations":{"vscode":{"settings":{"terminal.integrated.defaultProfile.linux":"bash"}}}}]'
 
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     groupmod -n vscode ubuntu && \
@@ -45,22 +45,23 @@ RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akin
 
 RUN curl -fsSL https://mise.run | sh
 
-RUN mkdir -p /home/vscode/.config/mise
-COPY --chown=vscode:vscode mise/config.toml /home/vscode/.config/mise/config.toml
+COPY --chown=vscode:vscode .config/mise/config.toml /home/vscode/.config/mise/config.toml
 
-RUN mise trust /home/vscode/.config/mise/config.toml && \
-    mise install && \
-    mise cache clear
+RUN mise install && mise cache clear
 
 RUN git clone https://github.com/LazyVim/starter /home/vscode/.config/nvim && \
     rm -rf /home/vscode/.config/nvim/.git
 
-RUN mkdir -p /home/vscode/.config/nvim/lua/plugins
-COPY --chown=vscode:vscode nvim/plugins/colorscheme.lua /home/vscode/.config/nvim/lua/plugins/colorscheme.lua
+COPY --chown=vscode:vscode .config/nvim/lua/plugins/colorscheme.lua /home/vscode/.config/nvim/lua/plugins/colorscheme.lua
 
 RUN mise exec -- nvim --headless "+Lazy! sync" +qa
 
-RUN mkdir -p /home/vscode/.config/opencode
-COPY --chown=vscode:vscode opencode/ /home/vscode/.config/opencode/
+COPY --chown=vscode:vscode .config/opencode/       /home/vscode/.config/opencode/
 
-COPY --chown=vscode:vscode .bashrc /home/vscode/.bashrc
+COPY --chown=vscode:vscode .config/jj/config.toml  /home/vscode/.config/jj/config.toml
+
+COPY --chown=vscode:vscode .gitconfig              /home/vscode/.gitconfig
+
+COPY --chown=vscode:vscode .config/starship.toml   /home/vscode/.config/starship.toml
+
+COPY --chown=vscode:vscode .bashrc                 /home/vscode/.bashrc
