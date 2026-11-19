@@ -39,10 +39,9 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     && echo "vscode:100000:65536" >> /etc/subgid \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /etc/containers && \
-    touch /etc/containers/nodocker && \
-    printf '[storage]\ndriver = "overlay"\n\n[storage.options.overlay]\nmountopt = "nodev,metacopy=on"\n' > /etc/containers/storage.conf && \
-    printf '[engine]\ncgroup_manager = "cgroupfs"\nevents_logger = "file"\n' > /etc/containers/containers.conf
+RUN mkdir -p /etc/containers && touch /etc/containers/nodocker
+
+COPY --chown=vscode:vscode .config/containers/ /home/vscode/.config/containers/
 
 ENV USER=vscode \
     LOGNAME=vscode \
