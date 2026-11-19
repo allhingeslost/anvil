@@ -4,6 +4,10 @@
   "privileged": true,
   "remoteUser": "vscode",
 
+  "runArgs": [
+    "--network=host"
+  ],
+
   "mounts": [
     "source=${localEnv:HOME}/.gitconfig,target=/tmp/setup/.gitconfig,type=bind,readonly",
     "source=${localEnv:HOME}/.config/gh,target=/tmp/setup/gh,type=bind,readonly",
