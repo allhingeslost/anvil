@@ -28,6 +28,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         fuse-overlayfs \
         uidmap \
         slirp4netns \
+        passt \
         crun \
         iptables \
     && echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
