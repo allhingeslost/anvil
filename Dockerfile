@@ -1,6 +1,6 @@
 FROM ubuntu:26.04
 
-LABEL devcontainer.metadata='[{"remoteUser":"vscode","customizations":{"vscode":{"settings":{"terminal.integrated.defaultProfile.linux":"bash"}}}}]'
+LABEL devcontainer.metadata='[{"remoteUser": "vscode"}]'
 
 ARG DEBIAN_FRONTEND=noninteractive
 
