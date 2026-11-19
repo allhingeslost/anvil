@@ -8,6 +8,6 @@ DevBox comes ready to use with:
 
 - **Pitchfork** - a built in background process handler to run servers and daemon inside the dev box without systemd in user space.
   
-- **Podman** - a built in container to run containers right inside the box no need docker compose.
+- **Podman** - a built in container runner to run containers right inside the box no need docker compose.
 
 Open it, and you're ready to go.
