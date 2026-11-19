@@ -62,6 +62,6 @@ COPY --chown=vscode:vscode .config/jj/config.toml /home/vscode/.config/jj/config
 
 COPY --chown=vscode:vscode .gitconfig /home/vscode/.gitconfig
 
-COPY --chown=vscode:vscode .config/starship.toml   /home/vscode/.config/starship.toml
+COPY --chown=vscode:vscode .config/starship.toml /home/vscode/.config/starship.toml
 
-COPY --chown=vscode:vscode .bashrc                 /home/vscode/.bashrc
+COPY --chown=vscode:vscode .bashrc /home/vscode/.bashrc
