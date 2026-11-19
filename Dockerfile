@@ -56,11 +56,11 @@ COPY --chown=vscode:vscode .config/nvim/lua/plugins/colorscheme.lua /home/vscode
 
 RUN mise exec -- nvim --headless "+Lazy! sync" +qa
 
-COPY --chown=vscode:vscode .config/opencode/       /home/vscode/.config/opencode/
+COPY --chown=vscode:vscode .config/opencode/ /home/vscode/.config/opencode/
 
-COPY --chown=vscode:vscode .config/jj/config.toml  /home/vscode/.config/jj/config.toml
+COPY --chown=vscode:vscode .config/jj/config.toml /home/vscode/.config/jj/config.toml
 
-COPY --chown=vscode:vscode .gitconfig              /home/vscode/.gitconfig
+COPY --chown=vscode:vscode .gitconfig /home/vscode/.gitconfig
 
 COPY --chown=vscode:vscode .config/starship.toml   /home/vscode/.config/starship.toml
 
