@@ -1,6 +1,6 @@
 FROM ubuntu:26.04
 
-LABEL devcontainer.metadata='[{"remoteUser":"vscode","customizations":{"vscode":{"settings":{"terminal.integrated.defaultProfile.linux":"bash"}}}}]'
+LABEL devcontainer.metadata='[{"remoteUser":"vscode","privileged":true,"customizations":{"vscode":{"settings":{"terminal.integrated.defaultProfile.linux":"bash"}}}}]'
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -23,11 +23,25 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         less \
         file \
         tmux \
+        podman \
+        podman-docker \
+        fuse-overlayfs \
+        uidmap \
+        slirp4netns \
+        crun \
+        iptables \
     && echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
     && chmod 0440 /etc/sudoers.d/vscode \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen en_US.UTF-8 \
+    && echo "vscode:100000:65536" >> /etc/subuid \
+    && echo "vscode:100000:65536" >> /etc/subgid \
     && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /etc/containers && \
+    touch /etc/containers/nodocker && \
+    printf '[storage]\ndriver = "overlay"\n\n[storage.options.overlay]\nmountopt = "nodev,metacopy=on"\n' > /etc/containers/storage.conf && \
+    printf '[engine]\ncgroup_manager = "cgroupfs"\nevents_logger = "file"\n' > /etc/containers/containers.conf
 
 ENV USER=vscode \
     LOGNAME=vscode \
