@@ -35,8 +35,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     && chmod 0440 /etc/sudoers.d/vscode \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen en_US.UTF-8 \
-    && echo "vscode:100000:65536" >> /etc/subuid \
-    && echo "vscode:100000:65536" >> /etc/subgid \
+    && sed -i 's/ubuntu/vscode/g' /etc/subuid /etc/subgid \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /etc/containers && touch /etc/containers/nodocker
