@@ -27,7 +27,6 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         podman-docker \
         fuse-overlayfs \
         uidmap \
-        libcap2-bin \
         slirp4netns \
         passt \
         crun \
@@ -39,9 +38,6 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     && sed -i '/^vscode:/d' /etc/subuid /etc/subgid \
     && echo "vscode:1001:64535" >> /etc/subuid \
     && echo "vscode:1001:64535" >> /etc/subgid \
-    && chmod 0755 /usr/bin/newuidmap /usr/bin/newgidmap \
-    && setcap cap_setuid=ep /usr/bin/newuidmap \
-    && setcap cap_setgid=ep /usr/bin/newgidmap \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /etc/containers && touch /etc/containers/nodocker
@@ -51,13 +47,14 @@ ENV USER=vscode \
     LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     SHELL=/bin/bash \
+    XDG_RUNTIME_DIR=/home/vscode/.run \
     _CONTAINERS_USERNS_CONFIGURED="" \
     PATH="/home/vscode/.local/bin:/home/vscode/.local/share/mise/shims:$PATH"
 
 USER vscode
 WORKDIR /home/vscode
 
-RUN mkdir -p ~/.config ~/.local/share/containers
+RUN mkdir -p ~/.config ~/.local/share/containers ~/.run && chmod 700 ~/.run
 
 VOLUME /home/vscode/.local/share/containers
 
