@@ -148,3 +148,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+
+if ! pgrep -u "$USER" -f "podman system service" >/dev/null; then
+  rm -f "$XDG_RUNTIME_DIR/podman/podman.sock"
+  nohup podman system service --time=0 "$DOCKER_HOST" >/dev/null 2>&1 &
+  disown
+fi

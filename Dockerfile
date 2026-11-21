@@ -54,7 +54,7 @@ ENV USER=vscode \
 USER vscode
 WORKDIR /home/vscode
 
-RUN mkdir -p ~/.config ~/.local/share/containers ~/.run && chmod 700 ~/.run
+RUN mkdir -p ~/.config ~/.local/share/containers ~/.run/podman && chmod 700 ~/.run
 
 VOLUME /home/vscode/.local/share/containers
 
