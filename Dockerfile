@@ -46,8 +46,6 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
 
 RUN mkdir -p /etc/containers && touch /etc/containers/nodocker
 
-COPY --chown=vscode:vscode .config/containers/ /home/vscode/.config/containers/
-
 ENV USER=vscode \
     LOGNAME=vscode \
     LANG=en_US.UTF-8 \
@@ -58,6 +56,12 @@ ENV USER=vscode \
 
 USER vscode
 WORKDIR /home/vscode
+
+RUN mkdir -p ~/.config ~/.local/share/containers
+
+VOLUME /home/vscode/.local/share/containers
+
+COPY --chown=vscode:vscode .config/containers/ /home/vscode/.config/containers/
 
 RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git && \
     make -C ble.sh install PREFIX=/home/vscode/.local && \
