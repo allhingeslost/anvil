@@ -37,8 +37,8 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen en_US.UTF-8 \
     && sed -i '/^vscode:/d' /etc/subuid /etc/subgid \
-    && echo "vscode:100000:65536" >> /etc/subuid \
-    && echo "vscode:100000:65536" >> /etc/subgid \
+    && echo "vscode:1001:64535" >> /etc/subuid \
+    && echo "vscode:1001:64535" >> /etc/subgid \
     && chmod 0755 /usr/bin/newuidmap /usr/bin/newgidmap \
     && setcap cap_setuid=ep /usr/bin/newuidmap \
     && setcap cap_setgid=ep /usr/bin/newgidmap \
