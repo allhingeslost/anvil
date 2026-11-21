@@ -27,6 +27,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         podman-docker \
         fuse-overlayfs \
         uidmap \
+        libcap2-bin \
         slirp4netns \
         passt \
         crun \
@@ -35,7 +36,11 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     && chmod 0440 /etc/sudoers.d/vscode \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen en_US.UTF-8 \
-    && sed -i 's/ubuntu/vscode/g' /etc/subuid /etc/subgid \
+    && echo "vscode:1001:64535" > /etc/subuid \
+    && echo "vscode:1001:64535" > /etc/subgid \
+    && chmod 0755 /usr/bin/newuidmap /usr/bin/newgidmap \
+    && setcap cap_setuid=ep /usr/bin/newuidmap \
+    && setcap cap_setgid=ep /usr/bin/newgidmap \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /etc/containers && touch /etc/containers/nodocker
@@ -47,6 +52,7 @@ ENV USER=vscode \
     LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     SHELL=/bin/bash \
+    _CONTAINERS_USERNS_CONFIGURED="" \
     PATH="/home/vscode/.local/bin:/home/vscode/.local/share/mise/shims:$PATH"
 
 USER vscode
