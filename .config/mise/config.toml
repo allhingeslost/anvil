@@ -2,6 +2,7 @@
 gh-dash = "github:dlvhdr/gh-dash"
 kondo = "github:tbillington/kondo"
 lazysql = "github:jorgerojas26/lazysql"
+ouch = "github:ouch-org/ouch"
 posting = "github:darrenburns/posting"
 procs = "github:dalance/procs"
 
@@ -11,6 +12,7 @@ atuin = "latest"
 aube = "latest"
 bat = "latest"
 bottom = "latest"
+choose = "latest"
 cloudflared = "latest"
 crush = "latest"
 delta = "latest"
@@ -40,6 +42,7 @@ neovim = "latest"
 node = "lts"
 odin = { version = "latest", bin_path = "." }
 opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
+ouch = "latest"
 pitchfork = "latest"
 posting = { version = "latest", prerelease = true }
 procs = "latest"
