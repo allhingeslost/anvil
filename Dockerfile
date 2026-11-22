@@ -58,7 +58,7 @@ RUN mkdir -p ~/.config ~/.local/share/containers ~/.run/podman && chmod 700 ~/.r
 
 VOLUME /home/vscode/.local/share/containers
 
-COPY --chown=vscode:vscode .config/containers/ /home/vscode/.config/containers/
+COPY --chown=vscode:vscode temper/.config/containers/ /home/vscode/.config/containers/
 
 RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git && \
     make -C ble.sh install PREFIX=/home/vscode/.local && \
@@ -66,23 +66,23 @@ RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akin
 
 RUN curl -fsSL https://mise.run | sh
 
-COPY --chown=vscode:vscode .config/mise/config.toml /home/vscode/.config/mise/config.toml
+COPY --chown=vscode:vscode temper/.config/mise/config.toml /home/vscode/.config/mise/config.toml
 
 RUN mise install && mise cache clear
 
 RUN git clone https://github.com/LazyVim/starter /home/vscode/.config/nvim && \
     rm -rf /home/vscode/.config/nvim/.git
 
-COPY --chown=vscode:vscode .config/nvim/lua/plugins/colorscheme.lua /home/vscode/.config/nvim/lua/plugins/colorscheme.lua
+COPY --chown=vscode:vscode temper/.config/nvim/lua/plugins/colorscheme.lua /home/vscode/.config/nvim/lua/plugins/colorscheme.lua
 
 RUN mise exec -- nvim --headless "+Lazy! sync" +qa
 
-COPY --chown=vscode:vscode .config/opencode/ /home/vscode/.config/opencode/
+COPY --chown=vscode:vscode temper/.config/opencode/ /home/vscode/.config/opencode/
 
-COPY --chown=vscode:vscode .config/jj/config.toml /home/vscode/.config/jj/config.toml
+COPY --chown=vscode:vscode temper/.config/jj/config.toml /home/vscode/.config/jj/config.toml
 
-COPY --chown=vscode:vscode .gitconfig /home/vscode/.gitconfig
+COPY --chown=vscode:vscode temper/.gitconfig /home/vscode/.gitconfig
 
-COPY --chown=vscode:vscode .config/starship.toml /home/vscode/.config/starship.toml
+COPY --chown=vscode:vscode temper/.config/starship.toml /home/vscode/.config/starship.toml
 
-COPY --chown=vscode:vscode .bashrc /home/vscode/.bashrc
+COPY --chown=vscode:vscode temper/.bashrc /home/vscode/.bashrc
