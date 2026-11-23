@@ -1,5 +1,5 @@
 {
-  "name": "DevBox",
+  "name": "Anvil",
   "image": "ghcr.io/allhingeslost/anvil:latest",
   "privileged": true,
   "remoteUser": "vscode",
@@ -13,7 +13,8 @@
     "source=${localEnv:HOME}/.config/gh,target=/tmp/setup/gh,type=bind,readonly",
     "source=${localEnv:HOME}/.config/opencode,target=/tmp/setup/opencode-config,type=bind,readonly",
     "source=${localEnv:HOME}/.local/share/opencode,target=/tmp/setup/opencode-share,type=bind,readonly",
-    "source=${localEnv:HOME}/.config/crush,target=/tmp/setup/crush,type=bind,readonly"
+    "source=${localEnv:HOME}/.config/crush,target=/tmp/setup/crush-config,type=bind,readonly",
+    "source=${localEnv:HOME}/.local/share/crush,target=/tmp/setup/crush-share,type=bind,readonly"
   ],
 
   "postStartCommand": "bash .devcontainer/setup.sh"
