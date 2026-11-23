@@ -26,8 +26,8 @@ for file in opencode.json cli.json service.json; do
     fi
 done
 
-if [ -f /tmp/setup/opencode-share/auth.json ]; then
-    cp /tmp/setup/opencode-share/auth.json ~/.local/share/opencode/auth.json
+if [ -f /tmp/setup/opencode-share/opencode.db ]; then
+    cp /tmp/setup/opencode-share/opencode.db ~/.local/share/opencode/opencode.db
 fi
 
 if [ -d /tmp/setup/crush-config ]; then
