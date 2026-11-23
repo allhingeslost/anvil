@@ -66,7 +66,9 @@ RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akin
 
 RUN curl -fsSL https://mise.run | sh
 
-COPY --chown=vscode:vscode temper/.config/mise/config.toml /home/vscode/.config/mise/config.toml
+ARG FLAVOR=full
+
+COPY --chown=vscode:vscode temper/.config/mise/${FLAVOR}/config.toml /home/vscode/.config/mise/config.toml
 
 RUN mise install && mise cache clear
 

@@ -21,6 +21,10 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        flavor: [base, full]
 
     steps:
       - name: Checkout repository
@@ -42,7 +46,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest
+            type=raw,value=${{ matrix.flavor }}
+            type=raw,value=latest,enable=${{ matrix.flavor == 'full' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
@@ -50,12 +55,22 @@ jobs:
           context: .
           push: true
           provenance: false
+          build-args: |
+            FLAVOR=${{ matrix.flavor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: |
+            type=gha,scope=${{ matrix.flavor }}
+            type=gha,scope=base
+          cache-to: type=gha,mode=max,scope=${{ matrix.flavor }}
           no-cache: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
-      
+          
+  cleanup:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
       - name: Clean up untagged images
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
