@@ -38,6 +38,7 @@ lazygit = "latest"
 lazysql = "latest"
 lnav = "latest"
 neovim = "latest"
+node = "lts"
 opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
 ouch = "latest"
 pitchfork = "latest"
