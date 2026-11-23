@@ -81,6 +81,8 @@ RUN mise exec -- nvim --headless "+Lazy! sync" +qa
 
 COPY --chown=vscode:vscode temper/.config/opencode/ /home/vscode/.config/opencode/
 
+COPY --chown=vscode:vscode temper/.config/crush/ /home/vscode/.config/crush/
+
 COPY --chown=vscode:vscode temper/.config/jj/config.toml /home/vscode/.config/jj/config.toml
 
 COPY --chown=vscode:vscode temper/.gitconfig /home/vscode/.gitconfig
