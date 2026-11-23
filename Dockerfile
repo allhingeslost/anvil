@@ -40,8 +40,6 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
     && echo "vscode:100000:65536" >> /etc/subgid \
     && rm -rf /var/lib/apt/lists/*
 
-
-
 RUN mkdir -p /etc/containers && touch /etc/containers/nodocker
 
 ENV USER=vscode \
