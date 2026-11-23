@@ -1,0 +1,17 @@
+{
+  "base": "charmtone-panther",
+  "bg_base": "#282c34",
+  "fg_base": "#abb2bf",
+  "primary": "#61afef",
+  "secondary": "#c678dd",
+  "accent": "#528bff",
+  "success": "#98c379",
+  "warning": "#e5c07b",
+  "error": "#e06c75",
+  "diff_insert_fg": "#98c379",
+  "diff_insert_code_bg": "#2c3b35",
+  "diff_insert_gutter_bg": "#28342e",
+  "diff_delete_fg": "#e06c75",
+  "diff_delete_code_bg": "#3e2d33",
+  "diff_delete_gutter_bg": "#34282c"
+}

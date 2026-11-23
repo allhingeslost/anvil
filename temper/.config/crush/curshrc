@@ -1,0 +1,19 @@
+permissions deny agent agent_dispatch agent_send agent_status agent_stop agentic_fetch
+
+permissions allow view ls grep glob edit multiedit write fetch
+
+permissions safe "pwd" "ls"
+permissions safe "git status" "git diff" "git log"
+permissions safe "jj status" "jj diff" "jj log" "jj show" "jj root"
+
+hook add PreToolUse --name allow-safe-commands --matcher '^bash$' --command '
+case "$CRUSH_TOOL_INPUT_COMMAND" in
+  pwd* | ls*)
+    echo "{\"decision\":\"allow\"}" ;;
+  "git status"* | "git diff"* | "git log"*)
+    echo "{\"decision\":\"allow\"}" ;;
+  "jj status"* | "jj diff"* | "jj log"* | "jj show"* | "jj root"*)
+    echo "{\"decision\":\"allow\"}" ;;
+  *)
+    exit 0 ;;
+esac'
