@@ -5,8 +5,24 @@
     "provider": "random"
   },
   "permissions": [
-    { "action": "*", "resource": "*", "effect": "allow" },
+    { "action": "*", "resource": "*", "effect": "ask" },
     { "action": "subagent", "resource": "*", "effect": "deny" },
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "glob", "resource": "*", "effect": "allow" },
+    { "action": "grep", "resource": "*", "effect": "allow" },
+    { "action": "edit", "resource": "*", "effect": "allow" },
+    { "action": "webfetch", "resource": "*", "effect": "allow" },
+    { "action": "websearch", "resource": "*", "effect": "allow" },
+    { "action": "shell", "resource": "pwd*", "effect": "allow" },
+    { "action": "shell", "resource": "ls*", "effect": "allow" },
+    { "action": "shell", "resource": "git status*", "effect": "allow" },
+    { "action": "shell", "resource": "git diff*", "effect": "allow" },
+    { "action": "shell", "resource": "git log*", "effect": "allow" },
+    { "action": "shell", "resource": "jj status*", "effect": "allow" },
+    { "action": "shell", "resource": "jj diff*", "effect": "allow" },
+    { "action": "shell", "resource": "jj log*", "effect": "allow" },
+    { "action": "shell", "resource": "jj show*", "effect": "allow" },
+    { "action": "shell", "resource": "jj root*", "effect": "allow" },
     { "action": "external_directory", "resource": "*", "effect": "ask" }
   ]
 }
