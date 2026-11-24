@@ -15,28 +15,47 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         wget \
         git \
         procps \
-        unzip \
-        xz-utils \
-        openssl \
-        libssl-dev \
         openssh-client \
-        build-essential \
-        gawk \
+        tmux \
         less \
         file \
-        tmux \
+        gawk \
+        tzdata \
+        gnupg \
+        socat \
+        unzip \
+        xz-utils \
+        tar \
+        zstd \
+        build-essential \
+        pkg-config \
+        openssl \
+        libssl-dev \
+        zlib1g-dev \
+        libffi-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        libbz2-dev \
+        liblzma-dev \
         podman \
         podman-docker \
         fuse-overlayfs \
+        fuse3 \
         uidmap \
         slirp4netns \
         passt \
         crun \
         iptables \
+        iproute2 \
+        iputils-ping \
+        dnsutils \
+        strace \
+        lsof \
     && echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
     && chmod 0440 /etc/sudoers.d/vscode \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen en_US.UTF-8 \
+    && touch /etc/subuid /etc/subgid \
     && sed -i '/^\(ubuntu\|vscode\):/d' /etc/subuid /etc/subgid \
     && echo "vscode:1001:64535" >> /etc/subuid \
     && echo "vscode:1001:64535" >> /etc/subgid \
