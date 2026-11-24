@@ -1,7 +1,7 @@
 {
   "name": "Anvil",
   "image": "ghcr.io/allhingeslost/anvil:base",
-  "privileged": false,
+  "privileged": true,
   "remoteUser": "vscode",
 
   "runArgs": [
