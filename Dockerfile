@@ -28,6 +28,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         tar \
         zstd \
         build-essential \
+        clang \
         pkg-config \
         openssl \
         libssl-dev \
