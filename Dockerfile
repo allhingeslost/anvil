@@ -58,8 +58,6 @@ RUN mkdir -p ~/.config ~/.local/share/containers ~/.run/podman && chmod 700 ~/.r
 
 VOLUME /home/vscode/.local/share/containers
 
-COPY --chown=vscode:vscode temper/.config/containers/ /home/vscode/.config/containers/
-
 RUN git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git && \
     make -C ble.sh install PREFIX=/home/vscode/.local && \
     rm -rf ble.sh
@@ -78,6 +76,8 @@ RUN git clone https://github.com/LazyVim/starter /home/vscode/.config/nvim && \
 COPY --chown=vscode:vscode temper/.config/nvim/lua/plugins/colorscheme.lua /home/vscode/.config/nvim/lua/plugins/colorscheme.lua
 
 RUN mise exec -- nvim --headless "+Lazy! sync" +qa
+
+COPY --chown=vscode:vscode temper/.config/containers/ /home/vscode/.config/containers/
 
 COPY --chown=vscode:vscode temper/.config/opencode/ /home/vscode/.config/opencode/
 
