@@ -148,9 +148,12 @@ export PATH="$HOME/go/bin:$PATH"
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 
 if [ ! -d /run/systemd/system ]; then
-  if ! pgrep -u "$USER" -f "podman system service" >/dev/null; then
-    rm -f "$XDG_RUNTIME_DIR/podman/podman.sock"
-    nohup podman system service --time=0 "$DOCKER_HOST" >/dev/null 2>&1 &
-    disown
-  fi
+  mkdir -p "$XDG_RUNTIME_DIR/podman"
+  (
+    flock -n 9 || exit 0
+    if ! pgrep -u "$USER" -f "[p]odman system service" >/dev/null; then
+      rm -f "$XDG_RUNTIME_DIR/podman/podman.sock"
+      nohup podman system service --time=0 "$DOCKER_HOST" >/dev/null 2>&1 9>&- &
+    fi
+  ) 9>"$XDG_RUNTIME_DIR/podman/service.lock"
 fi
