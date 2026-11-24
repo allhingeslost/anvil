@@ -17,6 +17,8 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         procps \
         unzip \
         xz-utils \
+        openssl \
+        libssl-dev \
         openssh-client \
         build-essential \
         gawk \
