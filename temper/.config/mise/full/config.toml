@@ -39,7 +39,7 @@ lazysql = "latest"
 lnav = "latest"
 neovim = "latest"
 node = "lts"
-odin = { version = "latest", bin_path = "." }
+odin = "latest"
 opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
 ouch = "latest"
 pitchfork = "latest"
