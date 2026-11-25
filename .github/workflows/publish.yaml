@@ -8,7 +8,7 @@ on:
       - 'Dockerfile'
       - '.github/workflows/publish.yaml'
   schedule:
-    - cron: '0 0 25 * *'
+    - cron: '17 23 24 * *'
   workflow_dispatch:
 
 env:
