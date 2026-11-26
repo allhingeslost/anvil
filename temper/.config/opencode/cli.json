@@ -14,5 +14,9 @@
     "scrollbar": false,
     "thinking": "hide"
   },
-  "animations": true
+  "animations": true,
+  "cursor": {
+    "style": "line",
+    "blinking": true
+  }
 }
