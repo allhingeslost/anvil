@@ -40,6 +40,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         liblzma-dev \
         podman \
         podman-docker \
+        podman-compose \
         fuse-overlayfs \
         fuse3 \
         uidmap \
