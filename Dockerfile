@@ -41,6 +41,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         podman \
         podman-docker \
         podman-compose \
+        aardvark-dns \
         fuse-overlayfs \
         fuse3 \
         uidmap \
@@ -48,6 +49,7 @@ RUN usermod -l vscode -d /home/vscode -m ubuntu && \
         passt \
         crun \
         iptables \
+        nftables \
         iproute2 \
         iputils-ping \
         dnsutils \
